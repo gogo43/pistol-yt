@@ -68,7 +68,7 @@ if url:
                     audio_stream.download(filename = 'audio-track')
                     convert_mp3 = 'ffmpeg -i audio-track.mp4 audio-track.mp3'
                     subprocess.run(convert_mp3, shell = True)
-                    os.remove('audio-track.mp4')
+                    
                     formatted_title = re.sub("[^0-9a-zA-Z]+", "-", video.title)
                     merge_audio_video = (
                                          'ffmpeg -y -i audio-track.mp3 '
@@ -77,8 +77,7 @@ if url:
                                         f'copy Downloads/{formatted_title}.mkv'
                                           )
                     subprocess.run(merge_audio_video, shell = True)
-                    os.remove('audio-track.mp3')
-                    os.remove('video-track.mp4')
+                    
                 st.success(f'Finished Downloading {video.title}!')
 
         if download_type == 'Audio Only (.mp3)':
