@@ -12,7 +12,7 @@ from io import BytesIO
 def getVideo(url): #Check to ensure that the video can be found
     global video_found, video
     try:
-        video = YouTube(url)
+        video = YouTube(url).streams.first().download()
         video_found = True
     except pytube.exceptions.RegexMatchError:
         st.error('Invalid URL.')
