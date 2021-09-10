@@ -30,7 +30,7 @@ def loadThumbnail(image_url):
 @st.cache
 def getStats(video): # Return the formated video stats
     header = (f'**{video.title}**' 
-            + f' *By: {video.author}*')
+            + f' *By: *')
     thumbnail = loadThumbnail(video.thumbnail_url)
     info = (f'Length: **{datetime.timedelta(seconds = video.length)}** \n'
           + f'Views: **{video.views:,}**')
