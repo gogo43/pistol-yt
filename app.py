@@ -36,7 +36,7 @@ def getStats(video): # Return the formated video stats
           + f'Views: **{video.views:,}**')
     return header, thumbnail, info
 
-st.title('YouTube Downloader')
+st.title('Pistol air YouTube Downloader')
 
 url = st.text_input('Enter the URL of the YouTube video')
 
@@ -90,7 +90,7 @@ if url:
                     stream.download(filename = 'audio')
                     convert_mp3 = f'ffmpeg -i audio.mp4 Downloads/{re.sub("[^0-9a-zA-Z]+", "-", video.title)}.mp3'
                     subprocess.run(convert_mp3, shell = True)
-                    os.remove('Downloads/audio.mp4')
+                   
                 st.success(f'Finished Downloading {video.title}!')
 
         if download_type == 'Video Only (.mp4)':
