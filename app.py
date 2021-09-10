@@ -34,7 +34,7 @@ def getStats(video): # Return the formated video stats
  
     info = (f'Length: **{datetime.timedelta(seconds = video.length)}** \n'
           + f'Views: **{video.views:,}**')
-    return header, thumbnail, info
+    return header,  info
 
 st.title('YouTube Downloader')
 
@@ -45,7 +45,7 @@ if url:
     if video_found:
         header, thumbnail, info = getStats(video)
         st.header(header)
-        st.image(thumbnail, width = 750)
+       
         st.write(info)
         download_type = st.radio(
         'Select the type of download you would like', [
