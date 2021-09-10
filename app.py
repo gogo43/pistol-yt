@@ -12,7 +12,7 @@ from io import BytesIO
 def getVideo(url): #Check to ensure that the video can be found
     global video_found, video
     try:
-        video = YouTube(url).streams.get_highest_resolution().download()
+        video = YouTube(url)
         video_found = True
     except pytube.exceptions.RegexMatchError:
         st.error('Invalid URL.')
@@ -30,11 +30,11 @@ def loadThumbnail(image_url):
 @st.cache
 def getStats(video): # Return the formated video stats
     header = (f'**{video.title}**' 
-            + f' *By: pistolair *')
- 
+            + f' *By: *')
+    thumbnail = loadThumbnail(video.thumbnail_url)
     info = (f'Length: **{datetime.timedelta(seconds = video.length)}** \n'
           + f'Views: **{video.views:,}**')
-    return header,  info
+    return header, thumbnail, info
 
 st.title('YouTube Downloader')
 
@@ -45,7 +45,7 @@ if url:
     if video_found:
         header, thumbnail, info = getStats(video)
         st.header(header)
-       
+        st.image(thumbnail, width = 750)
         st.write(info)
         download_type = st.radio(
         'Select the type of download you would like', [
