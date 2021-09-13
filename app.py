@@ -12,6 +12,29 @@ import pandas as pd
 import glob
 from glob import iglob
 
+import base64 
+import time
+timestr = time.strftime("%Y%m%d-%H%M%S")
+import pandas as pd 
+
+class FileDownloader(object):
+	
+	def __init__(self, data,filename='myfile',file_ext='txt'):
+		super(FileDownloader, self).__init__()
+		self.data = data
+		self.filename = filename
+		self.file_ext = file_ext
+
+	def download(self):
+		b64 = base64.b64encode(self.data.encode()).decode()
+		new_filename = "{}_{}_.{}".format(self.filename,timestr,self.file_ext)
+		st.markdown("#### Download File ###")
+		href = f'<a href="data:file/{self.file_ext};base64,{b64}" download="{new_filename}">Click Here!!</a>'
+		st.markdown(href,unsafe_allow_html=True)
+
+
+
+
 def getVideo(url): #Check to ensure that the video can be found
     global video_found, video
     try:
@@ -85,7 +108,10 @@ if url:
                    
               
                 st.success(f'Finished Downloading {video.title}!')
-                         
+                
+                path = os.getcwd()
+                mkv_file =glob.glob(os.path.join(path, "*.mkv"))
+                download = FileDownloader(mkv_file).download()         
 
         if download_type == 'Audio Only (.mp3)':
             stream = video.streams.get_audio_only()
