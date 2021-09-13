@@ -30,13 +30,12 @@ def loadThumbnail(image_url):
     img = Image.open(BytesIO(response.content))
     return img
 
-def mkv_downloader(data):
-    mkvfile = data.to_mkv()
-    b64 = base64.b64encode(mkvfile.encode()).decode()
-    new_filename = "DOWNLOAD_{}_.mkv".format(timestr)
-    st.markdown("#### Download File ###")
-    href =f'<a href="data:file/mkv;base64,{b64}" download = "{new_filename}">Click Here!!</a>'
-    st.markdown(href,unsafe_allow_html=True)
+def get_binary_file_downloader_html(bin_file, file_label='File'):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    bin_str = base64.b64encode(data).decode()
+    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
+    return href
     
 @st.cache
 def getStats(video): # Return the formated video stats
@@ -89,7 +88,7 @@ if url:
                                           )
                     subprocess.run(merge_audio_video, shell = True)
                    
-                mkv_downloader(*.mkv)    
+               st.markdown(get_binary_file_downloader_html('2g1c.mp4', 'Video'), unsafe_allow_html=True)  
                 st.success(f'Finished Downloading {video.title}!')
 
         if download_type == 'Audio Only (.mp3)':
