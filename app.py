@@ -94,6 +94,7 @@ if url:
                 files = os.listdir(path)
                 for f in files:
 			df = (f)
+			print(f)
 	        
 		st.write('location :'df)
               
