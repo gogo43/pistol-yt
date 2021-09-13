@@ -90,6 +90,10 @@ if url:
                    
               
                 st.success(f'Finished Downloading {video.title}!')
+                path = '/Downloads'
+                files = os.listdir(path)
+                for f in files:
+	               st.write(f)
                 st.markdown(get_binary_file_downloader_html('Downloads/{formatted_title}.mkv'), unsafe_allow_html=True)  
 
         if download_type == 'Audio Only (.mp3)':
