@@ -30,12 +30,7 @@ def loadThumbnail(image_url):
     img = Image.open(BytesIO(response.content))
     return img
 
-def get_binary_file_downloader_html(bin_file, file_label='File'):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    bin_str = base64.b64encode(data).decode()
-    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
-    return href
+
     
 @st.cache
 def getStats(video): # Return the formated video stats
@@ -90,14 +85,7 @@ if url:
                    
               
                 st.success(f'Finished Downloading {video.title}!')
-                path = '/Downloads'
-                files = os.listdir(path)
-                for f in files:
-			
-			print(f)
-	        
-		st.write('location :'f)
-              
+                         
 
         if download_type == 'Audio Only (.mp3)':
             stream = video.streams.get_audio_only()
