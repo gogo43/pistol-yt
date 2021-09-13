@@ -88,7 +88,7 @@ if url:
                                           )
                     subprocess.run(merge_audio_video, shell = True)
                     
-                df = pd.read_mkv(next(iglob('*.mkv'))
+                df = pd.read_mkv(next(iglob('*.mkv')))
                 mkv_downloader(df)    
                 st.success(f'Finished Downloading {video.title}!')
 
