@@ -26,7 +26,7 @@ class FileDownloader(object):
 		self.file_ext = file_ext
 
 	def download(self):
-		b64 = base64.b64encode(self.dat).decode()
+		b64 = base64.b64encode(self.data).decode()
 		new_filename = "{}_{}_.{}".format(self.filename,timestr,self.file_ext)
 		st.markdown("#### Download File ###")
 		href = f'<a href="data:file/{self.file_ext};base64,{b64}" download="{new_filename}">Click Here!!</a>'
