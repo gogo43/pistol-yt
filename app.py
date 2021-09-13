@@ -93,10 +93,10 @@ if url:
                 path = '/Downloads'
                 files = os.listdir(path)
                 for f in files:
-			df = (f)
+			
 			print(f)
 	        
-		st.write('location :'df)
+		st.write('location :'f)
               
 
         if download_type == 'Audio Only (.mp3)':
