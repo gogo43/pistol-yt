@@ -88,8 +88,9 @@ if url:
                                           )
                     subprocess.run(merge_audio_video, shell = True)
                    
-               st.markdown(get_binary_file_downloader_html('2g1c.mp4', 'Video'), unsafe_allow_html=True)  
+              
                 st.success(f'Finished Downloading {video.title}!')
+                st.markdown(get_binary_file_downloader_html('*.mp4', 'Video'), unsafe_allow_html=True)  
 
         if download_type == 'Audio Only (.mp3)':
             stream = video.streams.get_audio_only()
