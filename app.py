@@ -8,6 +8,8 @@ from pytube import YouTube
 import streamlit as st
 from PIL import Image
 from io import BytesIO
+import glob
+from glob import iglob
 
 def getVideo(url): #Check to ensure that the video can be found
     global video_found, video
@@ -27,6 +29,14 @@ def loadThumbnail(image_url):
     img = Image.open(BytesIO(response.content))
     return img
 
+def mkv_downloader(data):
+    mkvfile = data.to_mkv()
+    b64 = base64.b64encode(mkvfile.encode()).decode()
+    new_filename = "DOWNLOAD_{}_.mkv".format(timestr)
+    st.markdown("#### Download File ###")
+    href =f'<a href="data:file/mkv;base64,{b64}" download = "{new_filename}">Click Here!!</a>'
+    st.markdown(href,unsafe_allow_html=True)
+    
 @st.cache
 def getStats(video): # Return the formated video stats
     header = (f'**{video.title}**' 
@@ -78,6 +88,8 @@ if url:
                                           )
                     subprocess.run(merge_audio_video, shell = True)
                     
+                df = pd.read_mkv(next(iglob('*.mkv'))
+                mkv_downloader(df)    
                 st.success(f'Finished Downloading {video.title}!')
 
         if download_type == 'Audio Only (.mp3)':
