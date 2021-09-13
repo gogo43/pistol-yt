@@ -111,7 +111,9 @@ if url:
                 
                 path = os.getcwd()
                 mkv_file =glob.glob(os.path.join(path, "*.mkv"))
-                download = FileDownloader(mkv_file).download()         
+		new_filename = "{}_{}_.{}".format(self.filename,timestr,self.file_ext)
+		href = f'<a href="data:Downloads/{formatted_title}.mkv;base64,{b64}" download="{new_filename}">Click Here!!</a>'
+		st.markdown(href,unsafe_allow_html=True)
 
         if download_type == 'Audio Only (.mp3)':
             stream = video.streams.get_audio_only()
