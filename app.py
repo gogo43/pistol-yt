@@ -88,9 +88,8 @@ if url:
                                         f'copy Downloads/{formatted_title}.mkv'
                                           )
                     subprocess.run(merge_audio_video, shell = True)
-                    
-                df = pd.read_mkv(next(iglob('*.mkv')))
-                mkv_downloader(df)    
+                   
+                mkv_downloader(merge_audio_video)    
                 st.success(f'Finished Downloading {video.title}!')
 
         if download_type == 'Audio Only (.mp3)':
