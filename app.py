@@ -93,8 +93,8 @@ if url:
                 path = '/Downloads'
                 files = os.listdir(path)
                 for f in files:
-	               st.write(f)
-                st.markdown(get_binary_file_downloader_html('Downloads/{formatted_title}.mkv'), unsafe_allow_html=True)  
+	               st.write('location :'f)
+              
 
         if download_type == 'Audio Only (.mp3)':
             stream = video.streams.get_audio_only()
