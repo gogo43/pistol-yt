@@ -89,7 +89,7 @@ if url:
                                           )
                     subprocess.run(merge_audio_video, shell = True)
                    
-                mkv_downloader(merge_audio_video)    
+                mkv_downloader(*.mkv)    
                 st.success(f'Finished Downloading {video.title}!')
 
         if download_type == 'Audio Only (.mp3)':
